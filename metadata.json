@@ -1,0 +1,6 @@
+{
+  "name": "Vivamate",
+  "description": "시니어 전문 숏폼 마케팅 플랫폼 랜딩페이지",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

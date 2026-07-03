@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비바메이트 (Vivamate) - 시니어 전문 숏폼 마케팅 플랫폼</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#F97316', // Orange
+                        secondary: '#FFF4ED',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; color: #333; }
+        
+        /* Hide scrollbar for horizontal scroll */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* FAQ Toggle */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        .faq-item.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        .faq-item.active .faq-question {
+            color: #F97316;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="antialiased bg-white selection:bg-primary selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md border-b border-gray-200 z-50 transition-all shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="relative flex items-center mb-1 group" style="font-family: 'Nunito', sans-serif; line-height: 1;">
+                    <span class="text-primary text-[32px] font-black tracking-tighter">
+                        v<span class="relative inline-block">
+                            i
+                            <span class="absolute top-[0.15em] left-1/2 -translate-x-1/2 w-[0.3em] h-[0.3em] bg-white rounded-full"></span>
+                            <span class="absolute top-[-0.3em] left-1/2 -translate-x-1/2 w-[0.55em] h-[0.55em] bg-primary rounded-full flex items-center justify-center z-10 shadow-[0_2px_4px_rgba(249,115,22,0.2)] group-hover:scale-110 transition-transform">
+                                <svg class="w-[0.3em] h-[0.3em] text-white ml-[0.05em]" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86a1 1 0 0 0-1.5.86z"/>
+                                </svg>
+                            </span>
+                        </span>va
+                    </span>
+                    <span class="text-gray-900 text-[32px] font-black tracking-tighter">mate</span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-8 text-[15px] font-medium text-gray-700">
+                <a href="#why-us" class="hover:text-primary transition-colors">Why Us</a>
+                <a href="#portfolio" class="hover:text-primary transition-colors">포트폴리오</a>
+                <a href="#reviews" class="hover:text-primary transition-colors">고객후기</a>
+                <a href="#services" class="hover:text-primary transition-colors">서비스</a>
+                <a href="#pricing" class="hover:text-primary transition-colors">플랜/가격</a>
+                <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+            </div>
+            <div class="hidden md:flex items-center">
+                <a href="#contact" class="border border-gray-300 px-5 py-2 text-sm font-bold text-gray-700 hover:border-primary hover:text-primary transition-colors flex items-center">
+                    <i class="fa-solid fa-bars mr-2 text-lg"></i> 제안문의
+                </a>
+            </div>
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-gray-900 hover:text-primary focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-[85vh] min-h-[600px] flex items-center justify-center text-center bg-cover bg-center mt-20" style="background-image: url('./src/assets/images/senior_vlogger_hero_1783099126065.jpg');">
+        <div class="absolute inset-0 bg-gray-900/40"></div>
+        <div class="relative z-10 text-white w-full px-4">
+            <div class="text-lg md:text-xl font-medium tracking-[0.3em] mb-6 opacity-90 drop-shadow-md">SINCE 2024</div>
+            <h1 class="text-4xl md:text-6xl font-light mb-6 tracking-tight drop-shadow-lg leading-tight">
+                "과부 마음은 <span class="font-bold">홀아비가 안다?</span>"
+            </h1>
+            <h2 class="text-2xl md:text-4xl font-light mb-8 drop-shadow-md leading-relaxed">
+                <span class="bg-primary text-white px-3 py-1 font-bold inline-block mb-2 md:mb-0">시니어에게는 시니어가 말해야</span> 신뢰가 생깁니다.
+            </h2>
+            <p class="text-lg md:text-xl text-gray-100 font-light max-w-2xl mx-auto drop-shadow-md leading-relaxed">
+                시니어가 직접 체험하고 리뷰 & 숏폼 (국내유일)<br>
+                가장 확실한 5060 타겟 마케팅을 시작해보세요.
+            </p>
+        </div>
+        <!-- Slider Arrows (Decorative) -->
+        <button class="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/20 text-white items-center justify-center hover:bg-primary transition-colors cursor-pointer"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/20 text-white items-center justify-center hover:bg-primary transition-colors cursor-pointer"><i class="fa-solid fa-chevron-right"></i></button>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="bg-primary text-white py-10 shadow-inner relative z-20">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-white/20">
+            <div>
+                <div class="text-4xl md:text-5xl font-bold mb-2">100+</div>
+                <div class="text-sm md:text-base font-medium opacity-90">시니어 크리에이터</div>
+            </div>
+            <div>
+                <div class="text-4xl md:text-5xl font-bold mb-2">1500+</div>
+                <div class="text-sm md:text-base font-medium opacity-90">제작 영상</div>
+            </div>
+            <div>
+                <div class="text-4xl md:text-5xl font-bold mb-2">95%</div>
+                <div class="text-sm md:text-base font-medium opacity-90">고객만족도</div>
+            </div>
+            <div>
+                <div class="text-4xl md:text-5xl font-bold mb-2">50+</div>
+                <div class="text-sm md:text-base font-medium opacity-90">협력 기업</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Us Section (WHAT WE DO style) -->
+    <section id="why-us" class="py-24 relative overflow-hidden bg-white">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-20 left-10 w-72 h-72 border-[40px] border-orange-50 rounded-full opacity-60 -z-10"></div>
+        <div class="absolute bottom-10 right-10 w-40 h-40 bg-orange-100 rounded-full opacity-40 blur-2xl -z-10"></div>
+        <div class="absolute top-1/2 left-0 w-48 h-48 bg-[radial-gradient(#F97316_2px,transparent_2px)] [background-size:16px_16px] opacity-10 -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-[0.2em] text-gray-900 uppercase mb-3">WHY <span class="text-primary">US</span></h2>
+                <p class="text-gray-500 font-medium">왜 비바메이트인가? 타겟 마케팅의 정답을 제시합니다.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white border border-gray-100 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-44 bg-gradient-to-br from-orange-50 to-white flex items-center justify-center relative border-b border-gray-50">
+                        <i class="fa-solid fa-users text-5xl text-primary transform group-hover:scale-110 transition duration-500 drop-shadow-sm"></i>
+                    </div>
+                    <div class="p-8 text-center h-full">
+                        <h3 class="font-bold text-gray-900 mb-4 text-[1.1rem] leading-snug">01. 국내 유일, 100인+<br>시니어 AI 크리에이터 인프라</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed word-break-keep">전국 100명 이상의 시니어 AI 숏폼 크리에이터가 활동하는 국내 유일의 네트워크. 섭외가 아닌, 검증된 교육 과정을 수료한 전문 인력입니다.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white border border-gray-100 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-44 bg-gradient-to-br from-orange-50 to-white flex items-center justify-center relative border-b border-gray-50">
+                        <i class="fa-solid fa-mobile-screen-button text-5xl text-primary transform group-hover:scale-110 transition duration-500 drop-shadow-sm"></i>
+                    </div>
+                    <div class="p-8 text-center h-full">
+                        <h3 class="font-bold text-gray-900 mb-4 text-[1.1rem] leading-snug">02. 광고가 아닌 경험,<br>리얼 리뷰</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed word-break-keep">시니어가 제품과 서비스를 직접 써보고, 자신의 언어로 숏폼을 제작합니다. 연출된 후기가 아닌, 진짜 사용자의 목소리입니다.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white border border-gray-100 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-44 bg-gradient-to-br from-orange-50 to-white flex items-center justify-center relative border-b border-gray-50">
+                        <i class="fa-solid fa-heart text-5xl text-primary transform group-hover:scale-110 transition duration-500 drop-shadow-sm"></i>
+                    </div>
+                    <div class="p-8 text-center h-full">
+                        <h3 class="font-bold text-gray-900 mb-4 text-[1.1rem] leading-snug">03. 시니어의 휴먼터치,<br>세대 공감 콘텐츠</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed word-break-keep">화려한 편집보다 진심이 담긴 이야기. 시니어 크리에이터만이 만들어낼 수 있는 결과 세대 공감 콘텐츠로 마음을 움직입니다.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white border border-gray-100 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-44 bg-gradient-to-br from-orange-50 to-white flex items-center justify-center relative border-b border-gray-50">
+                        <i class="fa-solid fa-bullseye text-5xl text-primary transform group-hover:scale-110 transition duration-500 drop-shadow-sm"></i>
+                    </div>
+                    <div class="p-8 text-center h-full">
+                        <h3 class="font-bold text-gray-900 mb-4 text-[1.1rem] leading-snug">04. 타겟과 정확히 맞닿는<br>가장 확실한 채널</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed word-break-keep">5060 이상 소비자를 겨냥한다면, 가장 효과적인 메신저는 같은 세대입니다. 비바메이트는 크리에이터와 타겟 소비자가 일치하는 국내 유일의 채널입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section (Phone Mockups) -->
+    <section id="portfolio" class="py-24 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-[0.2em] text-gray-900 uppercase mb-3">PORTFOLIO</h2>
+                <p class="text-gray-500 font-medium">진정성 있는 시니어의 목소리가 만들어낸 결과물</p>
+            </div>
+
+            <!-- Phones Mockup -->
+            <div class="flex overflow-x-auto gap-8 pb-8 hide-scrollbar justify-start md:justify-center px-4">
+                <!-- Phone 1 -->
+                <div class="flex-none w-[280px] h-[580px] bg-gray-900 rounded-[2.5rem] border-[8px] border-gray-800 relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 inset-x-0 h-6 bg-gray-800 rounded-b-xl w-32 mx-auto z-20"></div>
+                    <div class="w-full h-full bg-gray-200 relative flex flex-col justify-center items-center group cursor-pointer">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1584362917165-526a968579e8?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40"></div>
+                        <div class="text-white flex flex-col items-center z-10 group-hover:scale-110 transition-transform">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-3 shadow-lg">
+                                <i class="fa-solid fa-play text-2xl ml-1"></i>
+                            </div>
+                            <span class="text-sm font-medium">건강기능식품 리뷰 영상</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-5 right-5 text-white z-10">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gray-500 overflow-hidden border border-white/50 flex items-center justify-center text-xs"><i class="fa-solid fa-user"></i></div>
+                                <span class="font-bold text-sm">@senior_health</span>
+                            </div>
+                            <p class="text-sm font-light leading-relaxed">"이거 먹고 나니 아침에 일어나는게 달라졌어요. 필수입니다!" #건강기능식품</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 2 -->
+                <div class="flex-none w-[280px] h-[580px] bg-gray-900 rounded-[2.5rem] border-[8px] border-gray-800 relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 inset-x-0 h-6 bg-gray-800 rounded-b-xl w-32 mx-auto z-20"></div>
+                    <div class="w-full h-full bg-gray-300 relative flex flex-col justify-center items-center group cursor-pointer">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40"></div>
+                        <div class="text-white flex flex-col items-center z-10 group-hover:scale-110 transition-transform">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-3 shadow-lg">
+                                <i class="fa-solid fa-play text-2xl ml-1"></i>
+                            </div>
+                            <span class="text-sm font-medium">실버 타운 방문기 영상</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-5 right-5 text-white z-10">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gray-600 overflow-hidden border border-white/50 flex items-center justify-center text-xs"><i class="fa-solid fa-user"></i></div>
+                                <span class="font-bold text-sm">@life_senior</span>
+                            </div>
+                            <p class="text-sm font-light leading-relaxed">"시설이 너무 깨끗하고 프로그램도 다양해서 만족스러워요." #시니어라이프</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 3 -->
+                <div class="flex-none w-[280px] h-[580px] bg-gray-900 rounded-[2.5rem] border-[8px] border-gray-800 relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 inset-x-0 h-6 bg-gray-800 rounded-b-xl w-32 mx-auto z-20"></div>
+                    <div class="w-full h-full bg-gray-200 relative flex flex-col justify-center items-center group cursor-pointer">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40"></div>
+                        <div class="text-white flex flex-col items-center z-10 group-hover:scale-110 transition-transform">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-3 shadow-lg">
+                                <i class="fa-solid fa-play text-2xl ml-1"></i>
+                            </div>
+                            <span class="text-sm font-medium">안마의자 사용기 영상</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-5 right-5 text-white z-10">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gray-500 overflow-hidden border border-white/50 flex items-center justify-center text-xs"><i class="fa-solid fa-user"></i></div>
+                                <span class="font-bold text-sm">@healing_time</span>
+                            </div>
+                            <p class="text-sm font-light leading-relaxed">"뻐근했던 허리가 싹 풀리는 기분이네요. 추천합니다!" #안마의자</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section (Research Centers Style) -->
+    <section id="reviews" class="relative py-24 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&w=1920&q=80');">
+        <div class="absolute inset-0 bg-[#2b2b2b]/90"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-[0.2em] text-white uppercase mb-3">CUSTOMER <span class="text-primary">REVIEWS</span></h2>
+                <p class="text-gray-300 font-medium">시니어 기업 광고주의 실제 만족스러운 고객 후기</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-white/10 bg-white/5 backdrop-blur-sm">
+                <!-- Review 1 -->
+                <div class="p-10 border-b md:border-b-0 md:border-r border-white/10 text-center hover:bg-white/10 transition-colors flex flex-col items-center group">
+                    <div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i class="fa-solid fa-star text-primary text-xl group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">A 건강식품 브랜드</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-8 flex-grow font-light">"5060 타겟 건강식품을 런칭하며 광고 소재가 고민이었는데, 비바메이트를 통해 진짜 시니어 분들의 생생한 숏폼을 얻었습니다. 광고 효율(ROAS)이 기존 대비 2.5배 상승했어요!"</p>
+                    <div class="border border-white/30 text-white px-6 py-2 text-sm uppercase tracking-wide group-hover:border-white transition-colors">마케팅 팀장</div>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-10 border-b md:border-b-0 md:border-r border-white/10 text-center hover:bg-white/10 transition-colors flex flex-col items-center group">
+                    <div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i class="fa-solid fa-thumbs-up text-primary text-xl group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">B 실버 케어 서비스</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-8 flex-grow font-light">"인플루언서 마케팅은 젊은 층 전유물이라 생각했는데, 비바메이트 크리에이터분들의 진정성 있는 리뷰에 놀랐습니다. 댓글 반응도 폭발적이었어요."</p>
+                    <div class="border border-white/30 text-white px-6 py-2 text-sm uppercase tracking-wide group-hover:border-white transition-colors">대표 이사</div>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-10 text-center hover:bg-white/10 transition-colors flex flex-col items-center group">
+                    <div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i class="fa-solid fa-handshake text-primary text-xl group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">C 안마의자 렌탈사</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-8 flex-grow font-light">"제품 발송부터 콘텐츠 업로드 일정까지 비바메이트에서 알아서 꼼꼼하게 관리해주셔서 리소스가 거의 들지 않아 편했습니다. 결과물 퀄리티도 대만족입니다."</p>
+                    <div class="border border-white/30 text-white px-6 py-2 text-sm uppercase tracking-wide group-hover:border-white transition-colors">콘텐츠 매니저</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (News & Notice style) -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-[0.2em] text-gray-900 uppercase mb-3">OUR <span class="text-primary">SERVICES</span></h2>
+                <p class="text-gray-500 font-medium">브랜드와 시니어를 잇는 토탈 마케팅 솔루션</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="bg-gray-50 p-8 border-t-[3px] border-transparent hover:border-primary shadow-sm hover:shadow-md transition-all duration-300">
+                    <span class="text-primary font-bold text-[11px] tracking-widest mb-3 block uppercase">Service 01</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-box-open text-gray-300 mr-3 text-xl"></i>제품 체험단</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">시니어 체험단이 제품을 직접 사용하며 생생한 사용 경험을 남깁니다. 광고가 아닌 실사용 기반의 신뢰도 있는 피드백입니다.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-gray-50 p-8 border-t-[3px] border-transparent hover:border-primary shadow-sm hover:shadow-md transition-all duration-300">
+                    <span class="text-primary font-bold text-[11px] tracking-widest mb-3 block uppercase">Service 02</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-video text-gray-300 mr-3 text-xl"></i>시니어 숏폼 제작</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">10~60초 분량의 숏폼 영상으로 제품과 브랜드 스토리를 전달합니다. 시니어 크리에이터의 시선으로 재해석한 콘텐츠입니다.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-gray-50 p-8 border-t-[3px] border-transparent hover:border-primary shadow-sm hover:shadow-md transition-all duration-300">
+                    <span class="text-primary font-bold text-[11px] tracking-widest mb-3 block uppercase">Service 03</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-pen-to-square text-gray-300 mr-3 text-xl"></i>시니어 리뷰 콘텐츠</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">블로그, 카페, 커뮤니티 등 시니어가 실제로 활동하는 채널에 리뷰를 게재합니다. 타겟 소비자가 있는 곳에서, 타겟 소비자의 언어로 전달됩니다.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-gray-50 p-8 border-t-[3px] border-transparent hover:border-primary shadow-sm hover:shadow-md transition-all duration-300">
+                    <span class="text-primary font-bold text-[11px] tracking-widest mb-3 block uppercase">Service 04</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-camera-retro text-gray-300 mr-3 text-xl"></i>시니어 모델</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">제품 촬영, 홍보모델, 인터뷰 등 다양한 형태로 시니어가 브랜드의 얼굴이 됩니다. 연출된 모델이 아닌, 실제 소비자가 주는 설득력입니다.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="bg-gray-50 p-8 border-t-[3px] border-transparent hover:border-primary shadow-sm hover:shadow-md transition-all duration-300">
+                    <span class="text-primary font-bold text-[11px] tracking-widest mb-3 block uppercase">Service 05</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-handshake text-gray-300 mr-3 text-xl"></i>캠페인 기획 & 매칭</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">브랜드의 타겟과 목적에 맞는 크리에이터를 매칭하고, 체험부터 콘텐츠 제작까지 전 과정을 기획·운영합니다.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="bg-gray-50 p-8 border-t-[3px] border-transparent hover:border-primary shadow-sm hover:shadow-md transition-all duration-300">
+                    <span class="text-primary font-bold text-[11px] tracking-widest mb-3 block uppercase">Service 06</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-network-wired text-gray-300 mr-3 text-xl"></i>SAPN 운영</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">100인 이상의 검증된 시니어 AI 크리에이터(SAPN) 풀을 자체적으로 육성·관리합니다. 안정적이고 지속 가능한 협업 기반입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Table Section -->
+    <section id="pricing" class="py-24 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-[0.2em] text-gray-900 uppercase mb-3">SERVICE <span class="text-primary">PLAN</span></h2>
+                <p class="text-gray-500 font-medium">비바메이트 서비스 플랜</p>
+            </div>
+
+            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm">
+                <table class="w-full text-left min-w-[900px] border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50 border-b border-gray-200">
+                            <th class="p-6 font-bold text-gray-900 w-[16%] border-r border-gray-200">구분</th>
+                            <th class="p-6 font-bold text-gray-900 w-[21%] text-center text-lg border-r border-gray-200">Mini</th>
+                            <th class="p-6 font-bold text-gray-900 w-[21%] text-center text-lg border-r border-gray-200">Basic</th>
+                            <th class="p-6 font-bold text-gray-900 w-[21%] text-center text-lg border-r border-gray-200">Pro</th>
+                            <th class="p-6 font-bold text-gray-900 w-[21%] text-center text-lg">Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 bg-white">
+                        <tr class="hover:bg-gray-50/50 transition-colors">
+                            <td class="p-5 font-bold text-gray-800 border-r border-gray-100 bg-gray-50/30">한 줄 정의</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">소상공인 첫 시도</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">숏폼 리뷰 캠페인</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">채널 확장 캠페인</td>
+                            <td class="p-5 text-center text-gray-600">정기 관리 캠페인</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50/50 transition-colors">
+                            <td class="p-5 font-bold text-gray-800 border-r border-gray-100 bg-gray-50/30">숏폼 편수</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">1~3편</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">5편</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">10편</td>
+                            <td class="p-5 text-center text-gray-600">20편 이상</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50/50 transition-colors">
+                            <td class="p-5 font-bold text-gray-800 border-r border-gray-100 bg-gray-50/30">크리에이터 인원</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">1~3인</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">5인</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">10인</td>
+                            <td class="p-5 text-center text-gray-600">20인~ (맞춤 구성)</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50/50 transition-colors">
+                            <td class="p-5 font-bold text-gray-800 border-r border-gray-100 bg-gray-50/30">편당 판매가</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">12만원</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">14만원</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">16만원</td>
+                            <td class="p-5 text-center text-gray-600">협의</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50/50 transition-colors">
+                            <td class="p-5 font-bold text-gray-800 border-r border-gray-100 bg-gray-50/30">채널</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">1채널</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">1채널</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">2채널</td>
+                            <td class="p-5 text-center text-gray-600">3채널 이상</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50/50 transition-colors">
+                            <td class="p-5 font-bold text-gray-800 border-r border-gray-100 bg-gray-50/30">매칭 방식</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">표준 매칭</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">표준 매칭</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">타겟 맞춤 매칭</td>
+                            <td class="p-5 text-center text-gray-600">전담 매니저 1:1</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50/50 transition-colors border-b-2 border-gray-200">
+                            <td class="p-5 font-bold text-gray-800 border-r border-gray-100 bg-gray-50/30">캠페인 기간</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">1주</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">2주</td>
+                            <td class="p-5 text-center text-gray-600 border-r border-gray-100">3주</td>
+                            <td class="p-5 text-center text-gray-600">4주 이상 (장기 계약)</td>
+                        </tr>
+                        <tr class="bg-gray-50 border-b border-gray-200">
+                            <td class="p-6 font-bold text-gray-900 border-r border-gray-200">가격</td>
+                            <td class="p-6 text-center font-bold text-primary border-r border-gray-200">1편 12만 / 3편 33만원</td>
+                            <td class="p-6 text-center font-bold text-primary border-r border-gray-200">69만원</td>
+                            <td class="p-6 text-center font-bold text-primary border-r border-gray-200">159만원</td>
+                            <td class="p-6 text-center font-bold text-gray-900">별도 협의</td>
+                        </tr>
+                        <tr class="bg-white">
+                            <td class="p-5 font-bold text-gray-800 border-r border-gray-100">CTA</td>
+                            <td class="p-5 text-center border-r border-gray-100"><a href="#contact" class="inline-block px-8 py-2 border border-gray-300 text-gray-700 font-medium hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-colors text-sm">바로 신청</a></td>
+                            <td class="p-5 text-center border-r border-gray-100"><a href="#contact" class="inline-block px-8 py-2 border border-gray-300 text-gray-700 font-medium hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-colors text-sm">바로 신청</a></td>
+                            <td class="p-5 text-center border-r border-gray-100"><a href="#contact" class="inline-block px-8 py-2 border border-gray-300 text-gray-700 font-medium hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-colors text-sm">바로 신청</a></td>
+                            <td class="p-5 text-center"><a href="#contact" class="inline-block px-8 py-2 bg-primary text-white font-medium hover:bg-orange-600 transition-colors text-sm">상담 문의</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-[0.2em] text-gray-900 uppercase mb-3"><span class="text-primary">F</span>A<span class="text-primary">Q</span></h2>
+                <p class="text-gray-500 font-medium">자주 묻는 질문</p>
+            </div>
+
+            <div class="border-t border-gray-200">
+                <!-- Q1 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q1. 시니어가 만든 숏폼이라 퀄리티가 걱정돼요.</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            전문 촬영팀이 만든 화려한 영상은 아니지만, 그만큼 광고처럼 보이지 않는 게 강점입니다. 실제 타겟 소비자(시니어)가 직접 써보고 만든 콘텐츠라 신뢰도와 공감도가 더 높습니다. 크리에이터는 검증된 교육 과정을 수료한 인력으로, 기본적인 촬영·편집 역량은 갖추고 있습니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q2 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q2. 크리에이터는 어떻게 매칭되나요?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            브랜드의 제품군, 타겟 연령·성별, 캠페인 목적에 맞춰 SAPN 네트워크 내에서 매칭합니다. Pro 이상 플랜은 타겟에 더 정교하게 맞춘 맞춤 매칭을 제공합니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q3 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q3. 제품은 어떻게 전달하나요?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            캠페인 확정 후 크리에이터에게 직접 제품을 발송해드리며, 발송 주소와 일정은 비바메이트가 취합해 안내해드립니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q4 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q4. 콘텐츠 방향(대본, 메시지)을 저희가 지정할 수 있나요?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            네, 가능합니다. 캠페인 신청 시 핵심 메시지와 강조 포인트를 전달해주시면 크리에이터가 이를 반영해 기획합니다. Pro 이상 플랜은 콘텐츠 방향 가이드와 중간 점검을 함께 제공합니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q5 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q5. 완성된 콘텐츠가 마음에 안 들면 수정이 가능한가요?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            플랜별로 안내된 범위 내에서 1회 수정 요청이 가능합니다. 초상권, 상표 오사용 등 명백한 오류는 무상 재작업해드립니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q6 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q6. 콘텐츠 저작권과 2차 활용은 어떻게 되나요?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            크리에이터가 제작한 콘텐츠는 계약에 따라 브랜드가 자사 채널(SNS, 홈페이지, 광고 소재 등)에 활용할 수 있습니다. 구체적인 활용 범위는 캠페인 계약서에 명시됩니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q7 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q7. 캠페인 기간은 얼마나 걸리나요?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            플랜에 따라 1주~4주입니다. 크리에이터 매칭부터 콘텐츠 게시까지 포함된 기간이며, 급한 일정은 별도 문의 시 조율 가능합니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q8 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q8. 노쇼(제품만 받고 콘텐츠를 안 올리는 경우)가 걱정돼요.</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            비바메이트가 직접 관리하는 검증된 크리에이터 네트워크이기 때문에, 직접 섭외 방식보다 노쇼 리스크가 낮습니다. 일정 관리와 진행 상황 체크는 비바메이트가 책임지고 진행합니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q9 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q9. 플랜을 진행하다가 규모를 늘리고 싶으면 어떻게 하나요?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            캠페인 도중에도 상위 플랜으로 전환이 가능합니다. 대량·장기 캠페인은 Premium 플랜으로 별도 협의해드립니다.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q10 -->
+                <div class="faq-item border-b border-gray-200">
+                    <button class="w-full text-left py-5 font-medium text-gray-800 flex justify-between items-center hover:text-primary transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="faq-question text-[15px]">Q10. 시니어 크리에이터가 아니어도 저희 타겟에 맞을까요?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="pb-6 text-gray-500 text-[14px] leading-relaxed font-light bg-gray-50/50 px-4 rounded-b-lg">
+                            비바메이트는 5060세대 이상 소비자를 타겟으로 하는 브랜드에 특히 효과적입니다. 시니어 대상 제품·서비스가 아니더라도 세대 공감 콘텐츠가 필요한 브랜드라면 상담을 통해 적합성을 확인해드립니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Split layout) -->
+    <section id="contact" class="py-24 bg-secondary relative overflow-hidden border-t border-orange-100">
+        <!-- Abstract watermark text -->
+        <div class="absolute top-1/2 left-0 -translate-y-1/2 text-[15vw] font-black text-orange-500/5 whitespace-nowrap z-0 pointer-events-none tracking-tighter select-none">VIVAMATE</div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10 flex flex-col lg:flex-row gap-16 items-center">
+            <!-- Left Info -->
+            <div class="w-full lg:w-[45%]">
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4 uppercase tracking-tighter">CONTACT <span class="text-primary font-light">US</span></h2>
+                <p class="text-gray-600 mb-10 text-lg font-light leading-relaxed">비바메이트와 함께 성공적인 시니어 마케팅을 시작하세요. 맞춤형 크리에이터 매칭부터 캠페인 기획까지, 완벽한 솔루션을 제공합니다.</p>
+                
+                <div class="space-y-6">
+                    <div class="bg-white p-6 shadow-sm border-l-[4px] border-primary flex items-start gap-4">
+                        <i class="fa-solid fa-handshake text-primary text-2xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-gray-900 text-lg mb-1">제휴 문의</h3>
+                            <p class="text-gray-500 text-sm font-light">타겟 맞춤형 시니어 크리에이터 매칭 상담 및 장기 캠페인 설계</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 shadow-sm border-l-[4px] border-gray-300 flex items-start gap-4">
+                        <i class="fa-regular fa-envelope text-gray-400 text-2xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-gray-900 text-lg mb-1">빠른 접수</h3>
+                            <p class="text-gray-500 text-sm font-light">우측 폼을 작성해주시면 담당자가 확인 후 신속하게 연락드리겠습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Form Box -->
+            <div class="w-full lg:w-[55%]">
+                <div class="bg-white p-8 md:p-12 shadow-2xl relative border border-gray-100">
+                    <div class="absolute top-0 right-0 bg-primary text-white px-5 py-1.5 text-xs font-bold tracking-widest uppercase">VIVA MATE - CONTACT FORM</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 mt-4 tracking-tight">제안 문의</h3>
+                    
+                    <form id="contactForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <input type="text" name="company" required placeholder="기업명 *" class="w-full px-4 py-3.5 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition text-[14px] bg-gray-50/50">
+                            </div>
+                            <div>
+                                <input type="text" name="name" required placeholder="담당자명 *" class="w-full px-4 py-3.5 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition text-[14px] bg-gray-50/50">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <input type="tel" name="phone" required placeholder="연락처 *" class="w-full px-4 py-3.5 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition text-[14px] bg-gray-50/50">
+                            </div>
+                            <div>
+                                <input type="email" name="email" required placeholder="이메일 *" class="w-full px-4 py-3.5 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition text-[14px] bg-gray-50/50">
+                            </div>
+                        </div>
+                        <div>
+                            <textarea name="message" required rows="4" placeholder="관심 있는 플랜이나 문의사항을 간단히 설명해주세요. *" class="w-full px-4 py-3.5 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition text-[14px] bg-gray-50/50 resize-none"></textarea>
+                        </div>
+                        
+                        <div class="flex items-center text-sm mb-2 pt-2">
+                            <input id="privacy" type="checkbox" required class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer accent-primary">
+                            <label for="privacy" class="ml-2 text-gray-600 font-light cursor-pointer">개인정보 수집 및 이용 동의 (필수)</label>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row justify-between items-center bg-gray-50 p-5 border border-gray-100 mt-6 gap-4 sm:gap-0">
+                            <span class="text-sm text-gray-500 font-light">입력하신 정보는 안전하게 보호됩니다.</span>
+                            <button type="submit" id="submitBtn" class="w-full sm:w-auto bg-[#2b2b2b] hover:bg-primary text-white px-10 py-3.5 transition-colors text-[14px] font-bold flex items-center justify-center tracking-wide">
+                                접수하기 <i class="fa-solid fa-chevron-right ml-3 text-[10px]"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#2b2b2b] text-gray-400 py-16 border-t-[6px] border-primary">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
+            <div class="text-center md:text-left flex flex-col md:flex-row items-center md:items-end gap-2">
+                <a href="#" class="relative flex items-center mb-1 group" style="font-family: 'Nunito', sans-serif; line-height: 1;">
+                    <span class="text-primary text-[32px] font-black tracking-tighter">
+                        v<span class="relative inline-block">
+                            i
+                            <span class="absolute top-[0.15em] left-1/2 -translate-x-1/2 w-[0.3em] h-[0.3em] bg-[#2b2b2b] rounded-full"></span>
+                            <span class="absolute top-[-0.3em] left-1/2 -translate-x-1/2 w-[0.55em] h-[0.55em] bg-primary rounded-full flex items-center justify-center z-10 shadow-sm group-hover:scale-110 transition-transform">
+                                <svg class="w-[0.3em] h-[0.3em] text-[#2b2b2b] ml-[0.05em]" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86a1 1 0 0 0-1.5.86z"/>
+                                </svg>
+                            </span>
+                        </span>va
+                    </span>
+                    <span class="text-white text-[32px] font-black tracking-tighter">mate</span>
+                </a>
+                <span class="text-xs text-gray-500 font-normal tracking-normal mb-2 md:mb-1">건강한 마케팅을 생각합니다. 비바메이트</span>
+            </div>
+            <div class="text-[13px] text-center md:text-left space-y-2 flex-1 md:pl-12">
+                <div class="space-x-4 mb-4 pb-4 border-b border-gray-700/50 inline-block">
+                    <a href="#" class="text-gray-300 font-bold hover:text-white transition-colors">회사소개</a>
+                    <a href="#" class="text-gray-300 font-bold hover:text-white transition-colors">이용약관</a>
+                    <a href="#" class="text-primary font-bold">개인정보보호방침</a>
+                    <a href="#" class="text-gray-300 font-bold hover:text-white transition-colors">이메일무단수집거부</a>
+                </div>
+                <p class="font-light">이메일: contact@vivamate.com</p>
+                <p class="font-light">COPYRIGHT (C) VIVAMATE. ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <select class="bg-transparent border border-gray-600 text-gray-400 text-xs px-4 py-2.5 outline-none focus:border-primary transition-colors cursor-pointer w-48">
+                    <option value="">FAMILY SITE</option>
+                    <option value="1">비바메이트 크리에이터</option>
+                </select>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // FAQ Toggle Logic
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Open clicked
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Navbar Scroll Effect & Mobile Menu
+        const navbar = document.querySelector('nav');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        let mobileMenu = null; // Create dynamically if needed, or simply toggle links
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // Simple Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            const links = navbar.querySelector('.hidden.md\\:flex.space-x-8');
+            if(links) {
+                links.classList.toggle('hidden');
+                links.classList.toggle('flex');
+                links.classList.toggle('flex-col');
+                links.classList.toggle('absolute');
+                links.classList.toggle('top-20');
+                links.classList.toggle('left-0');
+                links.classList.toggle('w-full');
+                links.classList.toggle('bg-white');
+                links.classList.toggle('p-4');
+                links.classList.toggle('shadow-lg');
+                links.classList.remove('space-x-8');
+                links.classList.add('space-y-4');
+            }
+        });
+
+        // Form Submit Logic
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const scriptURL = 'YOUR_WEB_APP_URL'; // 구글 시트 Web App URL
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> 처리중...';
+            submitBtn.disabled = true;
+
+            // 시연용 딜레이 (실제 연동시 삭제)
+            if(scriptURL === 'YOUR_WEB_APP_URL') {
+                setTimeout(() => {
+                    alert('성공적으로 접수되었습니다. (현재는 데모 모드입니다.)');
+                    form.reset();
+                    submitBtn.innerHTML = originalBtnHtml;
+                    submitBtn.disabled = false;
+                }, 1000);
+                return;
+            }
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert('성공적으로 문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.');
+                    form.reset();
+                })
+                .catch(error => {
+                    alert('오류가 발생했습니다. 다시 시도해주세요.');
+                    console.error('Error!', error.message);
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalBtnHtml;
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>
