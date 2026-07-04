@@ -700,7 +700,7 @@
         // Form Submit Logic
         const form = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
-        const scriptURL = 'YOUR_WEB_APP_URL'; // 구글 시트 Web App URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxDnktVdNt-eoc2VxPmnUrnx5OIxogc5_le862SX4NxqEtxo4GNFJzU9IlgFynBUrO-rg/exec'; // 구글 시트 Web App URL
 
         form.addEventListener('submit', e => {
             e.preventDefault();
@@ -710,8 +710,8 @@
             submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> 처리중...';
             submitBtn.disabled = true;
 
-            // 시연용 딜레이 (실제 연동시 삭제)
-            if(scriptURL === 'YOUR_WEB_APP_URL') {
+            /* // 시연용 딜레이 (실제 연동시 삭제)
+            if(scriptURL === 'https://script.google.com/macros/s/AKfycbxDnktVdNt-eoc2VxPmnUrnx5OIxogc5_le862SX4NxqEtxo4GNFJzU9IlgFynBUrO-rg/exec') {
                 setTimeout(() => {
                     alert('성공적으로 접수되었습니다. (현재는 데모 모드입니다.)');
                     form.reset();
@@ -720,6 +720,7 @@
                 }, 1000);
                 return;
             }
+            */
 
             fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
