@@ -703,45 +703,7 @@
             }
         });
 
-        // Form Submit Logic
-        const form = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzkPf691fPCZdZGcsiKw0E2AOYnHyMAyB9y6fRGSNJcAlxE7P7oLZHhBAFxBMASMyvzpw/exec'; // 구글 시트 Web App URL
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            
-            const formData = new FormData(form);
-            const originalBtnHtml = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> 처리중...';
-            submitBtn.disabled = true;
-
-            /* // 시연용 딜레이 (실제 연동시 삭제)
-            if(scriptURL === 'https://script.google.com/macros/s/AKfycbxDnktVdNt-eoc2VxPmnUrnx5OIxogc5_le862SX4NxqEtxo4GNFJzU9IlgFynBUrO-rg/exec') {
-                setTimeout(() => {
-                    alert('성공적으로 접수되었습니다. (현재는 데모 모드입니다.)');
-                    form.reset();
-                    submitBtn.innerHTML = originalBtnHtml;
-                    submitBtn.disabled = false;
-                }, 1000);
-                return;
-            }
-            */
-
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => {
-                    alert('성공적으로 문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.');
-                    form.reset();
-                })
-                .catch(error => {
-                    alert('오류가 발생했습니다. 다시 시도해주세요.');
-                    console.error('Error!', error.message);
-                })
-                .finally(() => {
-                    submitBtn.innerHTML = originalBtnHtml;
-                    submitBtn.disabled = false;
-                });
-        });
+       
     </script>
 </body>
 </html>
