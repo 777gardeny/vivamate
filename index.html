@@ -702,7 +702,47 @@
                 links.classList.toggle('space-y-4');
             }
         });
+// Form Submit Logic
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+// 구글 시트 Web App URL
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzkPf691fPCZdZGcsiKw0E2AOYnHyMAyB9y6fRGSNJcAlxE7P7oLZHhBAFxBMASMyvzpw/exec'; 
 
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const originalBtnHtml = submitBtn.innerHTML;
+    
+    // 버튼을 '처리중...' 상태로 변경 및 중복 클릭 방지
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> 처리중...';
+    submitBtn.disabled = true;
+
+    // 💡 body 부분을 new URLSearchParams로 감싸 구글 서버 포맷에 맞춤
+    fetch(scriptURL, { 
+        method: 'POST', 
+        body: new URLSearchParams(formData) 
+    })
+    .then(response => response.json()) // 구글 서버의 응답(JSON)을 해석
+    .then(data => {
+        if (data.result === 'success') {
+            alert('성공적으로 문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.');
+            form.reset(); // 입력창 초기화
+        } else {
+            alert('접수 처리 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+            console.error('Server Error:', data.error);
+        }
+    })
+    .catch(error => {
+        alert('네트워크 오류가 발생했습니다. 연결 상태를 확인하고 다시 시도해주세요.');
+        console.error('Network Error!', error.message);
+    })
+    .finally(() => {
+        // 전송이 끝나면 성공/실패 여부와 상관없이 버튼을 원래대로 복구
+        submitBtn.innerHTML = originalBtnHtml;
+        submitBtn.disabled = false;
+    });
+});
        
     </script>
 </body>
