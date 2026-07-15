@@ -995,12 +995,60 @@ form.addEventListener('submit', e => {
     </script>
     
     <script>
+        // Load YouTube IFrame Player API
+        var tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName("script")[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        const activePlayers = new Set();
+
+        function onPlayerStateChange(event) {
+            const tracks = document.querySelectorAll(".marquee-track");
+            
+            if (event.data === YT.PlayerState.PLAYING) {
+                activePlayers.add(event.target);
+                tracks.forEach(track => {
+                    track.style.animationPlayState = "paused";
+                });
+            } else {
+                activePlayers.delete(event.target);
+                if (activePlayers.size === 0) {
+                    tracks.forEach(track => {
+                        track.style.animationPlayState = ""; // Remove inline style to allow CSS hover
+                    });
+                }
+            }
+        }
+        
+        function onYouTubeIframeAPIReady() {
+            // Attach players to any iframes created before API was ready
+            const iframes = document.querySelectorAll(".portfolio-card iframe");
+            iframes.forEach(iframe => {
+                new YT.Player(iframe, {
+                    events: {
+                        "onStateChange": onPlayerStateChange
+                    }
+                });
+            });
+        }
+
         function playVideoInline(element, videoId) {
             // Check if iframe already exists
             if (element.querySelector("iframe")) return;
             
             const container = element.querySelector(".overflow-hidden");
-            container.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-full h-full object-cover rounded-[1.8rem]"></iframe>`;
+            container.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&rel=0&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-full h-full object-cover rounded-[1.8rem]"></iframe>`;
+            
+            const iframe = container.querySelector("iframe");
+            
+            if (typeof YT !== "undefined" && YT.Player) {
+                new YT.Player(iframe, {
+                    events: {
+                        "onStateChange": onPlayerStateChange
+                    }
+                });
+            }
         }
     </script>
 </body>
