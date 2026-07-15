@@ -51,8 +51,10 @@
             animation: scroll 40s linear infinite;
             width: max-content;
         }
-        .marquee-container:hover .marquee-track {
-            animation-play-state: paused;
+        @media (hover: hover) {
+            .marquee-container:hover .marquee-track {
+                animation-play-state: paused;
+            }
         }
         @keyframes scroll {
             0% { transform: translateX(0); }
@@ -1006,16 +1008,24 @@ form.addEventListener('submit', e => {
         function onPlayerStateChange(event) {
             const tracks = document.querySelectorAll(".marquee-track");
             
+            // Get iframe ID safely
+            let iframeId = "";
+            if (event.target && event.target.getIframe) {
+                const iframe = event.target.getIframe();
+                if (iframe) iframeId = iframe.id;
+            }
+            if (!iframeId) return;
+            
             if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
-                activePlayers.add(event.target);
+                activePlayers.add(iframeId);
                 tracks.forEach(track => {
                     track.style.animationPlayState = "paused";
                 });
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                activePlayers.delete(event.target);
+                activePlayers.delete(iframeId);
                 if (activePlayers.size === 0) {
                     tracks.forEach(track => {
-                        track.style.animationPlayState = ""; // Remove inline style to allow CSS hover
+                        track.style.animationPlayState = ""; // Remove inline style
                     });
                 }
             }
@@ -1025,7 +1035,10 @@ form.addEventListener('submit', e => {
             // Attach players to any iframes created before API was ready
             const iframes = document.querySelectorAll(".portfolio-card iframe");
             iframes.forEach(iframe => {
-                const player = new YT.Player(iframe, {
+                if (!iframe.id) {
+                    iframe.id = "yt-" + Math.random().toString(36).substr(2, 9);
+                }
+                new YT.Player(iframe, {
                     events: {
                         "onStateChange": onPlayerStateChange
                     }
@@ -1041,6 +1054,7 @@ form.addEventListener('submit', e => {
             container.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&rel=0&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-full h-full object-cover rounded-[1.8rem]"></iframe>`;
             
             const iframe = container.querySelector("iframe");
+            iframe.id = "yt-" + Math.random().toString(36).substr(2, 9);
             
             const tracks = document.querySelectorAll(".marquee-track");
             tracks.forEach(track => {
@@ -1053,7 +1067,7 @@ form.addEventListener('submit', e => {
                         "onStateChange": onPlayerStateChange
                     }
                 });
-                activePlayers.add(player);
+                activePlayers.add(iframe.id);
             }
         }
     </script>
