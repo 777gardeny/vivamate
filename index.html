@@ -1006,12 +1006,12 @@ form.addEventListener('submit', e => {
         function onPlayerStateChange(event) {
             const tracks = document.querySelectorAll(".marquee-track");
             
-            if (event.data === YT.PlayerState.PLAYING) {
+            if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
                 activePlayers.add(event.target);
                 tracks.forEach(track => {
                     track.style.animationPlayState = "paused";
                 });
-            } else {
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
                 activePlayers.delete(event.target);
                 if (activePlayers.size === 0) {
                     tracks.forEach(track => {
@@ -1025,7 +1025,7 @@ form.addEventListener('submit', e => {
             // Attach players to any iframes created before API was ready
             const iframes = document.querySelectorAll(".portfolio-card iframe");
             iframes.forEach(iframe => {
-                new YT.Player(iframe, {
+                const player = new YT.Player(iframe, {
                     events: {
                         "onStateChange": onPlayerStateChange
                     }
@@ -1042,12 +1042,18 @@ form.addEventListener('submit', e => {
             
             const iframe = container.querySelector("iframe");
             
+            const tracks = document.querySelectorAll(".marquee-track");
+            tracks.forEach(track => {
+                track.style.animationPlayState = "paused";
+            });
+
             if (typeof YT !== "undefined" && YT.Player) {
-                new YT.Player(iframe, {
+                const player = new YT.Player(iframe, {
                     events: {
                         "onStateChange": onPlayerStateChange
                     }
                 });
+                activePlayers.add(player);
             }
         }
     </script>
